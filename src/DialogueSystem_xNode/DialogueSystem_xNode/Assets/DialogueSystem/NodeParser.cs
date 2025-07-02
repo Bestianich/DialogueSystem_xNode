@@ -34,6 +34,7 @@ public class NodeParser : MonoBehaviour
             case NodeType.InterruptNode:
                 yield return new WaitForEndOfFrame();
                 NextNode("exit" , true);
+                break;
             default:
                 yield return new WaitForEndOfFrame();
                 break;
@@ -61,12 +62,12 @@ public class NodeParser : MonoBehaviour
             }
         }
 
-        //If the dialogue interrupts stop t
+        //If the dialogue interrupts then stop the parser
         if (interrupt)
         {
             _dialogueGraph.currentNode = null;
         }
-        else
+        else // keep parsing
         {
             _coroutineParseNode = StartCoroutine(ParseNode());
         }
