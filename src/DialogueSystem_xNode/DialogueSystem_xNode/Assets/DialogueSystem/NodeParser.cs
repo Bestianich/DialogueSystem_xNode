@@ -5,7 +5,7 @@ using XNode;
 
 public class NodeParser : MonoBehaviour
 {
-    [SerializeField] private DialogueGraph _dialogueGraph;
+    private DialogueGraph _dialogueGraph;
     private Coroutine _coroutineParseNode;
     
     public void StartParseNode(DialogueGraph dialogueGraph)
