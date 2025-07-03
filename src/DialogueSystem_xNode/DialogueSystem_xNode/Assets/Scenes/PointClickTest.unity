@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogueCanvas: {fileID: 531843238}
   _dialogueTextField: {fileID: 371486335}
+  _imageRenderer: {fileID: 2027653284}
 --- !u!114 &156844230
 MonoBehaviour:
   m_ObjectHideFlags: 0
