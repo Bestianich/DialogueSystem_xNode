@@ -16,6 +16,7 @@ namespace DialogueSystem
             {
                 Instance = this;
                 DontDestroyOnLoad(this.gameObject);
+                _nodeParser = gameObject.AddComponent<NodeParser>();
             }
             else
             {
@@ -36,7 +37,10 @@ namespace DialogueSystem
         public void StartDialogue(DialogueGraph dialogueGraph)
         {
             ShowCanvas();
-            _nodeParser.StartParseNode(dialogueGraph);
+            Debug.Log(dialogueGraph);
+            Debug.Log(_nodeParser);
+            DialogueGraph copy = dialogueGraph.Copy() as DialogueGraph;
+            _nodeParser.StartParseNode(copy , _dialogueTextField);
         }
     }
 }

@@ -1,17 +1,41 @@
 ﻿using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using XNode;
 
 public class NodeParser : MonoBehaviour
 {
     private DialogueGraph _dialogueGraph;
     private Coroutine _coroutineParseNode;
-    
+    private TextMeshProUGUI _textField;
+    private Image _imageRenderer;
+
+    //Generic Parse Node
     public void StartParseNode(DialogueGraph dialogueGraph)
     {
         dialogueGraph.Init();
         _dialogueGraph = dialogueGraph;
+        _coroutineParseNode = StartCoroutine(ParseNode());
+    }
+    //Parse Node to set text
+    public void StartParseNode(DialogueGraph dialogueGraph , TextMeshProUGUI textField)
+    {
+        Debug.Log("Ciao");
+        dialogueGraph.Init();
+        _dialogueGraph = dialogueGraph;
+        _textField = textField;
+        _coroutineParseNode = StartCoroutine(ParseNode());
+    }
+
+    //Parse Node to set both text and portrait
+    public void StartParseNode(DialogueGraph dialogueGraph, TextMeshProUGUI textField, Image imageRenderer)
+    {
+        dialogueGraph.Init();
+        _dialogueGraph = dialogueGraph;
+        _textField = textField;
+        _imageRenderer = imageRenderer;
         _coroutineParseNode = StartCoroutine(ParseNode());
     }
 
@@ -27,6 +51,7 @@ public class NodeParser : MonoBehaviour
             case NodeType.DialogueNode:
                 var dialogueNode = currentNode as DialogueNode;
                 string dialogueLine = dialogueNode.dialogueLine;
+                _textField.text = dialogueLine;
                 yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
                 NextNode("exit" , false);
