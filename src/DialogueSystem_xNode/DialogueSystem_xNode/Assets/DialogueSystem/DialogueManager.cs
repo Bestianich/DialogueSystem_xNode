@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DialogueSystem
 {
@@ -7,6 +8,7 @@ namespace DialogueSystem
     {
         [SerializeField] private GameObject _dialogueCanvas;
         [SerializeField] private TextMeshProUGUI _dialogueTextField;
+        [SerializeField] private Image _imageRenderer;
         public static DialogueManager Instance;
         private NodeParser _nodeParser;
 
@@ -40,7 +42,8 @@ namespace DialogueSystem
             Debug.Log(dialogueGraph);
             Debug.Log(_nodeParser);
             DialogueGraph copy = dialogueGraph.Copy() as DialogueGraph;
-            _nodeParser.StartParseNode(copy , _dialogueTextField);
+            _nodeParser.StartParseNode(copy , _dialogueTextField , _imageRenderer);
+            
         }
     }
 }

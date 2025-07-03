@@ -56,6 +56,13 @@ public class NodeParser : MonoBehaviour
                 yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
                 NextNode("exit" , false);
                 break;
+            case NodeType.PortraitNode:
+                var portraitNode = currentNode as PortraitNode;
+                if(!_imageRenderer.IsUnityNull())
+                    _imageRenderer.sprite = portraitNode.portrait;
+                yield return new WaitForEndOfFrame();
+                NextNode("exit" , false);
+                break;
             case NodeType.InterruptNode:
                 yield return new WaitForEndOfFrame();
                 NextNode("exit" , true);
